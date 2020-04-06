@@ -262,16 +262,16 @@
 
 				dat += "</span><br />"
 
-				if(diskette?.fields)
+				if(diskette?.genetic_makeup_buffer)
 					dat += "<div class='block'>"
 					dat += "<h4>Inserted Disk</h4>"
 					dat += "<b>Contents:</b> "
 					var/list/L = list()
-					if(diskette.fields["UI"])
+					if(diskette.genetic_makeup_buffer["UI"])
 						L += "Unique Identifier"
-					if(diskette.fields["UE"] && diskette.fields["name"] && diskette.fields["blood_type"])
+					if(diskette.genetic_makeup_buffer["UE"] && diskette.genetic_makeup_buffer["name"] && diskette.genetic_makeup_buffer["blood_type"])
 						L += "Unique Enzymes"
-					if(diskette.fields["SE"])
+					if(diskette.genetic_makeup_buffer["SE"])
 						L += "Structural Enzymes"
 					dat += english_list(L, "Empty", " + ", " + ")
 					var/can_load = FALSE
@@ -283,17 +283,17 @@
 						dat += "<br /><a href='byond://?src=[REF(src)];disk=load'>Load From Disk</a>"
 					else
 						dat += "<span class='linkOff'>Cannot Load From Disk: Access Denied</span>"
-					if(diskette.fields["SE"])
+					if(diskette.genetic_makeup_buffer["SE"])
 						if(!include_se)
 							dat += "<br /><a href='byond://?src=[REF(src)];task=include_se'>Currently Excluding SE</a>"
 						else
 							dat += "<br /><a href='byond://?src=[REF(src)];task=exclude_se'>Currently Including SE</a>"
-					if(diskette.fields["UI"])
+					if(diskette.genetic_makeup_buffer["UI"])
 						if(!include_ui)
 							dat += "<br /><a href='byond://?src=[REF(src)];task=include_ui'>Currently Excluding UI</a>"
 						else
 							dat += "<br /><a href='byond://?src=[REF(src)];task=exclude_ui'>Currently Including UI</a>"
-					if(diskette.fields["UE"])
+					if(diskette.genetic_makeup_buffer["UE"])
 						if(!include_ue)
 							dat += "<br /><a href='byond://?src=[REF(src)];task=include_ue'>Currently Excluding UE</a>"
 						else
@@ -417,7 +417,7 @@
 			if("load")
 
 
-				if (!diskette || !istype(diskette.fields))
+				if (!diskette || !istype(diskette.genetic_makeup_buffer))
 					temp = "<font class='bad'>Load error.</font>"
 					updateUsrDialog()
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -455,8 +455,8 @@
 					return
 
 				log_cloning("[key_name(usr)] added [key_name(active_record.fields["mindref"])]'s cloning records to [diskette] via [src] at [AREACOORD(src)].")
-				diskette.fields = active_record.fields.Copy()
-				diskette.name = "data disk - '[diskette.fields["name"]]'"
+				diskette.genetic_makeup_buffer = active_record.fields.Copy()
+				diskette.name = "data disk - '[diskette.genetic_makeup_buffer["name"]]'"
 				temp = "Save successful."
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 

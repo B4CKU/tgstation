@@ -470,6 +470,7 @@
 
 
 /obj/mecha/proc/click_action(atom/target,mob/user,params)
+	. = FALSE
 	if(!occupant || occupant != user )
 		return
 	if(!locate(/turf) in list(target,target.loc)) // Prevents inventory from being drilled
@@ -520,7 +521,7 @@
 		target.mech_melee_attack(src)
 		melee_can_hit = FALSE
 		addtimer(VARSET_CALLBACK(src, melee_can_hit, TRUE), melee_cooldown)
-
+	return TRUE
 
 /obj/mecha/proc/range_action(atom/target)
 	return

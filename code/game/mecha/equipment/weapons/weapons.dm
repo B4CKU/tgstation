@@ -83,6 +83,10 @@
 	projectile = /obj/item/projectile/beam/laser
 	fire_sound = 'sound/weapons/laser.ogg'
 	harmful = TRUE
+	projectiles_per_shot = 3
+	variance = 6
+	randomspread = 1
+	projectile_delay = 2
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
 	equip_cooldown = 8
@@ -291,6 +295,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
 	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
+	fire_sound = 'sound/weapons/shotgunshot.ogg'
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/scattershot
@@ -302,17 +307,15 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
-	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
+	desc = "A weapon for combat exosuits. Shoots bullets at high speeds."
+	fire_sound = 'sound/weapons/rifleshot.ogg'
 	icon_state = "mecha_uac2"
-	equip_cooldown = 10
+	equip_cooldown = 3
 	projectile = /obj/item/projectile/bullet/lmg
-	projectiles = 300
+	projectiles = 100
 	projectile_energy_cost = 20
-	projectiles_per_shot = 3
-	variance = 6
-	randomspread = 1
-	projectile_delay = 2
 	harmful = TRUE
+	automatic = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	name = "\improper SRM-8 missile rack"

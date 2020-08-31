@@ -72,9 +72,28 @@
 		return src
 
 /obj/item/proc/onMouseDown(object, location, params, mob)
+	if(ismecha(loc))
+		var/obj/mecha/M = loc
+		set waitfor = FALSE //Asynchronous processing is required here due to the while loop. In other words. Don't hold up the client's clicking while we run a loop that can go on for ages (potentially!)
+		if(world.time < M.selected.next_autofire)
+			M.selected.autofire_target = null
+			return FALSE
+		M.selected.next_autofire = world.time + 0.25 SECONDS //Get out of here with your stupid autoclicker...
+		M.selected.autofire_target = object //When we start firing, we start firing at whatever you clicked on initially. When the user drags their mouse, this shall change.
+		while(M.selected.autofire_target)  //While will only run while we have a user (loc) that is a mob, and we are being actively held by this mob, they have a client (as to prevent disconnecting mid-fight causing you to perma-fire) and of course, if we passed the previous check about autofiring.
+			if(!M.click_action(object,src,params))
+				M.selected.autofire_target = null
+				return FALSE
+			stoplag(max((10 / (M.selected.equip_cooldown ? M.selected.equip_cooldown : 1 )), 0.15 SECONDS))
+		
+		return M.click_action(object,src,params)
 	return
 
 /obj/item/proc/onMouseUp(object, location, params, mob)
+	if(ismecha(loc))
+		var/obj/mecha/M = loc
+		M.selected.autofire_target = null
+		return ..()
 	return
 
 /obj/item
@@ -130,6 +149,12 @@
 
 
 /obj/item/proc/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
+	if(ismecha(loc))
+		var/obj/mecha/M = loc
+		M.selected.autofire_target = over_object
+		if(!M.selected.automatic)
+			M.selected.autofire_target = null
+			return FALSE
 	return
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)

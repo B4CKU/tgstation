@@ -314,7 +314,6 @@
 	item_state = "monkeymind"
 	strip_delay = 100
 	var/mob/living/carbon/monkey/magnification = null ///if the helmet is on a valid target (just works like a normal helmet if not (cargo please stop))
-	var/polling = FALSE///if the helmet is currently polling for targets (special code for removal)
 
 /obj/item/clothing/head/helmet/monkey_sentience/Initialize()
 	. = ..()
@@ -335,25 +334,37 @@
 		return
 	if(!ismonkey(user) || user.ckey)
 		var/mob/living/something = user
-		to_chat(something, "<span class='boldnotice'>You feel a stabbing pain in the back of your head for a moment.</span>")
+		to_chat(something, "<span class='danger'>You feel a stabbing pain in the back of your head for a moment.</span>")
 		something.apply_damage(5,BRUTE,BODY_ZONE_HEAD,FALSE,FALSE,FALSE) //notably: no damage resist (it's in your helmet), no damage spread (it's in your helmet)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
-	magnification = user //this polls ghosts
+	notify_ghosts("\a [user] can be controlled", null, enter_link="<a href=?src=[REF(user)];activate=1>(Click to play)</a>", source=user, action=NOTIFY_ATTACK, ignore_key = POLL_IGNORE_SENTIENCE_POTION)
+	magnification = user
 	visible_message("<span class='warning'>[src] powers up!</span>")
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	polling = TRUE
-	var/list/candidates = pollCandidatesForMob("Do you want to play as a mind magnified monkey?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, magnification, POLL_IGNORE_SENTIENCE_POTION)
-	polling = FALSE
-	if(!candidates.len)
-		magnification = null
-		visible_message("<span class='notice'>[src] falls silent. Maybe you should try again later?</span>")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
-	var/mob/picked = pick(candidates)
-	magnification.key = picked.key
-	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
-	to_chat(magnification, "<span class='notice'>You're a mind magnified monkey! Protect your helmet with your life- if you lose it, your sentience goes with it!</span>")
-	icon_state = "[icon_state]up"
+
+/mob/living/carbon/monkey/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	
+	if(!istype(src.head, /obj/item/clothing/head/helmet/monkey_sentience))
+		return
+	var/obj/item/clothing/head/helmet/monkey_sentience/monkeyhelmet = src.head
+	if(QDELETED(src) || QDELETED(user) || src.mind)
+		return
+	if(!SSticker.mode)
+		to_chat(user, "Can't become \a [src] before the game has started.") //to pewnie nigdy sie nie stanie, ale na wszelki wypadek
+		return
+	var/be_mob = alert("Become \a [src]? (Warning, You can no longer be cloned!)",,"Yes","No")
+	if(be_mob == "No" || QDELETED(src) || !isobserver(user))
+		return
+	
+	monkeyhelmet.magnification.key = user.key
+	playsound(monkeyhelmet, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
+	to_chat(monkeyhelmet.magnification, "<span class='userdanger'>You're a mind magnified monkey! Protect your helmet with your life- if you lose it, your sentience goes with it!</span>")
+	monkeyhelmet.icon_state = "[monkeyhelmet.icon_state]up"
+
+	message_admins("[ADMIN_LOOKUPFLW(user)] has taken possession of \a [src] in [AREACOORD(src)].")
+	log_game("[key_name(user)] has taken possession of \a [src] in [AREACOORD(src)].")
 
 /obj/item/clothing/head/helmet/monkey_sentience/Destroy()
 	. = ..()
@@ -362,21 +373,19 @@
 /obj/item/clothing/head/helmet/monkey_sentience/proc/disconnect()
 	if(!magnification) //not put on a viable head
 		return
-	if(!polling)//put on a viable head, but taken off after polling finished.
-		if(magnification.client)
-			to_chat(magnification, "<span class='userdanger'>You feel your flicker of sentience ripped away from you, as everything becomes dim...</span>")
-			magnification.ghostize(FALSE)
-		if(prob(10))
-			switch(rand(1,4))
-				if(1) //blood rage
-					magnification.aggressive = TRUE
-				if(2) //brain death
-					magnification.apply_damage(500,BRAIN,BODY_ZONE_HEAD,FALSE,FALSE,FALSE)
-				if(3) //primal gene (gorilla)
-					magnification.gorillize()
-				if(4) //genetic mass susceptibility (gib)
-					magnification.gib()
-	//either used up correctly or taken off before polling finished (punish this by destroying the helmet)
+	if(magnification.client)
+		to_chat(magnification, "<span class='userdanger'>You feel your flicker of sentience ripped away from you, as everything becomes dim...</span>")
+		magnification.ghostize(FALSE)
+	if(prob(10))
+		switch(rand(1,4))
+			if(1) //blood rage
+				magnification.aggressive = TRUE
+			if(2) //brain death
+				magnification.apply_damage(500,BRAIN,BODY_ZONE_HEAD,FALSE,FALSE,FALSE)
+			if(3) //primal gene (gorilla)
+				magnification.gorillize()
+			if(4) //genetic mass susceptibility (gib)
+				magnification.gib()
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 	playsound(src, "sparks", 100, TRUE)
 	visible_message("<span class='warning'>[src] fizzles and breaks apart!</span>")
@@ -385,7 +394,7 @@
 
 /obj/item/clothing/head/helmet/monkey_sentience/dropped(mob/user)
 	. = ..()
-	if(magnification || polling)
+	if(magnification)
 		qdel(src)//runs disconnect code
 
 //LightToggle

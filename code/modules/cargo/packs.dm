@@ -1591,10 +1591,17 @@
 	crate_type = /obj/structure/closet/crate/secure/science
 	dangerous = TRUE
 
+/datum/supply_pack/science/monkey_helmets_single
+	name = "Monkey Mind Magnification Helmet crate Single-Pack"
+	desc = "Some research is best done with monkeys, yet sometimes they're just too dumb to complete more complicated tasks. This helmet should help."
+	cost = 4000
+	contains = list(/obj/item/clothing/head/helmet/monkey_sentience)
+	crate_name = "monkey mind magnification crate"
+
 /datum/supply_pack/science/monkey_helmets
 	name = "Monkey Mind Magnification Helmet crate"
 	desc = "Some research is best done with monkeys, yet sometimes they're just too dumb to complete more complicated tasks. These helmets should help."
-	cost = 1500
+	cost = 6000
 	contains = list(/obj/item/clothing/head/helmet/monkey_sentience,
 					/obj/item/clothing/head/helmet/monkey_sentience)
 	crate_name = "monkey mind magnification crate"

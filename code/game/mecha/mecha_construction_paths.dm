@@ -1340,8 +1340,12 @@
 				user.visible_message("[user] unfastens Phazon Armor Plates.", "<span class='notice'>You unfasten Phazon Armor Plates.</span>")
 		if(26)
 			if(diff==FORWARD)
-				user.visible_message("[user] carefully inserts the anomaly core into [parent] and secures it.",
-					"<span class='notice'>You slowly place the anomaly core into its socket and close its chamber.</span>")
+				user.visible_message("[user] carefully inserts the anomaly core into [parent] and secures it.", "<span class='notice'>You slowly place the anomaly core into its socket and close its chamber.</span>")
+				if(istype(I, /obj/item/assembly/signaler/anomaly/pyro)) result = /obj/mecha/combat/phazon/pyro
+				else if(istype(I, /obj/item/assembly/signaler/anomaly/grav)) result = /obj/mecha/combat/phazon/grav
+				else if(istype(I, /obj/item/assembly/signaler/anomaly/flux)) result = /obj/mecha/combat/phazon/flux
+				else if(istype(I, /obj/item/assembly/signaler/anomaly/bluespace)) result = /obj/mecha/combat/phazon/bluespace
+				else if(istype(I, /obj/item/assembly/signaler/anomaly/vortex)) result = /obj/mecha/combat/phazon/vortex
 	return TRUE
 
 //ODYSSEUS

@@ -1168,6 +1168,9 @@
 /mob/living/carbon/human/species/corporate
 	race = /datum/species/corporate
 
+/mob/living/carbon/human/species/diona
+	race = /datum/species/diona
+
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan
 

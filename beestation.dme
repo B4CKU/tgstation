@@ -2275,6 +2275,7 @@
 #include "code\modules\mob\living\carbon\human\species_types\apid.dm"
 #include "code\modules\mob\living\carbon\human\species_types\corporate.dm"
 #include "code\modules\mob\living\carbon\human\species_types\dullahan.dm"
+#include "code\modules\mob\living\carbon\human\species_types\dwarves.dm"
 #include "code\modules\mob\living\carbon\human\species_types\eggpeople.dm"
 #include "code\modules\mob\living\carbon\human\species_types\ethereal.dm"
 #include "code\modules\mob\living\carbon\human\species_types\felinid.dm"

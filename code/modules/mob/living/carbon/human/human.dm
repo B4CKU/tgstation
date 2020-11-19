@@ -1170,6 +1170,9 @@
 
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan
+	
+/mob/living/carbon/human/species/duergar
+	race = /datum/species/duergar
 
 /mob/living/carbon/human/species/egg
 	race = /datum/species/egg

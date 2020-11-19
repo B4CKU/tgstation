@@ -66,6 +66,7 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	layer = LOW_ITEM_LAYER
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/mineral/sandbags
+	edible = FALSE
 
 GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	new/datum/stack_recipe("sandbags", /obj/structure/barricade/sandbags, 1, time = 25, one_per_turf = 1, on_floor = 1), \
@@ -365,6 +366,7 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	throwforce = 2
 	grind_results = list(/datum/reagent/consumable/ice = 20)
 	merge_type = /obj/item/stack/sheet/mineral/snow
+	edible = FALSE
 
 GLOBAL_LIST_INIT(snow_recipes, list ( \
 	new/datum/stack_recipe("Snow wall", /turf/closed/wall/mineral/snow, 5, one_per_turf = 1, on_floor = 1), \
@@ -446,6 +448,7 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
 	singular_name = "coal lump"
 	merge_type = /obj/item/stack/sheet/mineral/coal
 	grind_results = list(/datum/reagent/carbon = 20)
+	edible = FALSE
 
 /obj/item/stack/sheet/mineral/coal/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300)//If the temperature of the object is over 300, then ignite

@@ -4,6 +4,7 @@
 	icon_state = "sheet-hide"
 	item_state = "sheet-hide"
 	novariants = TRUE
+	edible = FALSE
 
 /obj/item/stack/sheet/animalhide/human
 	name = "human skin"
@@ -111,6 +112,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
 	novariants = TRUE
+	edible = FALSE
 
 /obj/item/xenos_claw
 	name = "alien claw"
@@ -130,6 +132,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
 	item_state = "sheet-hairlesshide"
+	edible = FALSE
 
 /obj/item/stack/sheet/wetleather
 	name = "wet leather"
@@ -139,6 +142,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	item_state = "sheet-wetleather"
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
+	edible = FALSE
 
 /*
  * Leather SHeet
@@ -149,6 +153,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	singular_name = "leather piece"
 	icon_state = "sheet-leather"
 	item_state = "sheet-leather"
+	edible = FALSE
 
 GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("wallet", /obj/item/storage/wallet, 1), \
@@ -177,6 +182,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	singular_name = "watcher sinew"
 	icon_state = "sinew"
 	novariants = TRUE
+	edible = FALSE
 
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \

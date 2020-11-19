@@ -13,6 +13,7 @@
 	var/perunit = MINERAL_MATERIAL_AMOUNT
 	var/sheettype = null //this is used for girders in the creation of walls/false walls
 	var/point_value = 0 //turn-in value for the gulag stacker - loosely relative to its rarity.
+	var/edible = TRUE
 
 /obj/item/reagent_containers/food/snacks/material
 	name = "temporary duergar material snack item"
@@ -22,7 +23,7 @@
 	foodtype = MINERAL
 
 /obj/item/stack/sheet/attack(mob/M, mob/user, def_zone) //TODO: ograniczyć które rodzaje materiałów możemy jeść
-	if(user.a_intent != INTENT_HARM && isdwarf(M))
+	if(user.a_intent != INTENT_HARM && edible && isdwarf(M))
 		var/obj/item/reagent_containers/food/snacks/material/material_as_food = new
 		material_as_food.name = name
 		if(material_as_food.attack(M, user, def_zone))

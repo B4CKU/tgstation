@@ -235,6 +235,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/wood
 	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 20) //no lignocellulose or lignin reagents yet,
+	edible = FALSE
 
 /obj/item/stack/sheet/mineral/wood/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.wood_recipes
@@ -259,6 +260,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	var/pull_effort = 30
 	var/loom_result = /obj/item/stack/sheet/cotton/cloth
 	grind_results = list(/datum/reagent/cellulose = 10)
+	edible = FALSE
 
 GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("white jumpsuit", /obj/item/clothing/under/color/white, 3), \
@@ -302,6 +304,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	grind_results = list(/datum/reagent/cellulose = 20)
+	edible = FALSE
 
 /obj/item/stack/sheet/cotton/cloth/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cloth_recipes
@@ -329,6 +332,7 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	item_state = "sheet-silk"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/silk
+	edible = FALSE
 
 /obj/item/stack/sheet/silk/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.silk_recipes
@@ -353,6 +357,7 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/durathread
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+	edible = FALSE
 
 /obj/item/stack/sheet/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.durathread_recipes
@@ -366,6 +371,7 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/cotton/durathread
 	pull_effort = 70
 	loom_result = /obj/item/stack/sheet/durathread
+	edible = FALSE
 
 /*
  * Bamboo
@@ -392,6 +398,7 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/bamboo
 	grind_results = list("carbon" = 5)
+	edible = FALSE
 
 /obj/item/stack/sheet/mineral/bamboo/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.bamboo_recipes
@@ -463,6 +470,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	merge_type = /obj/item/stack/sheet/cardboard
 	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 10)
+	edible = FALSE
 
 /obj/item/stack/sheet/cardboard/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cardboard_recipes
@@ -627,6 +635,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	icon_state = "sheet-lessergem"
 	item_state = "sheet-lessergem"
 	novariants = TRUE
+	edible = FALSE
 
 
 /obj/item/stack/sheet/greatergem
@@ -636,6 +645,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	icon_state = "sheet-greatergem"
 	item_state = "sheet-greatergem"
 	novariants = TRUE
+	edible = FALSE
 
 	/*
  * Bones
@@ -655,6 +665,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	throw_range = 3
 	grind_results = list(/datum/reagent/carbon = 10)
 	merge_type = /obj/item/stack/sheet/bone
+	edible = FALSE
 
 GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
@@ -671,6 +682,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
 	merge_type = /obj/item/stack/sheet/plastic
+	edible = FALSE
 
 /obj/item/stack/sheet/plastic/fifty
 	amount = 50
@@ -695,6 +707,7 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	merge_type = /obj/item/stack/sheet/paperframes
 	resistance_flags = FLAMMABLE
 	grind_results = list(/datum/reagent/cellulose = 20)
+	edible = FALSE
 
 /obj/item/stack/sheet/paperframes/Initialize()
 	recipes = GLOB.paperframe_recipes

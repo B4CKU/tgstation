@@ -11,7 +11,9 @@
 	
 	speedmod = 1.3
 	armor = 15
-
+	
+	species_language_holder = /datum/language_holder/golem
+	
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 
 /datum/species/duergar/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -21,7 +23,7 @@
 
 /datum/species/duergar/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.transform = C.transform.Scale(1, 0.8)
+	C.transform = C.transform.Scale(1, 1.25)
 	REMOVE_TRAIT(C, TRAIT_ALCOHOL_TOLERANCE, "alcohol immune")
 
 /datum/species/duergar/spec_life(mob/living/carbon/human/H)

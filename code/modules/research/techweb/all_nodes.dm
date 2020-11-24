@@ -1110,7 +1110,7 @@
 	display_name = "Neural Nanite Programming"
 	description = "Nanite programs affecting nerves and brain matter."
 	prereq_ids = list("nanite_bio")
-	design_ids = list("nervous_nanites", "brainheal_nanites", "paralyzing_nanites", "stun_nanites", "selfscan_nanites","good_mood_nanites","bad_mood_nanites","nanojutsu_nanites")
+	design_ids = list("nervous_nanites", "brainheal_nanites", "paralyzing_nanites", "stun_nanites", "selfscan_nanites","good_mood_nanites","bad_mood_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000, TECHWEB_POINT_TYPE_NANITES = 1000)
 	export_price = 5000
 
@@ -1132,10 +1132,19 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000, TECHWEB_POINT_TYPE_NANITES = 2000)
 	export_price = 8000
 
+/datum/techweb_node/nanite_military
+	id = "nanite_military"
+	display_name = "Military Nanite Programming"
+	description = "Nanite programs that perform military-grade functions."
+	prereq_ids = list("nanite_mesh", "weaponry")
+	design_ids = list("nanojutsu_nanites")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500, TECHWEB_POINT_TYPE_NANITES = 1500)
+	export_price = 7500
+
 /datum/techweb_node/nanite_illegal
 	id = "nanite_illegal"
 	display_name = "Illegal Nanite Programming"
-	description = "Nanite programs that perform military-grade functions."
+	description = "Extremely dangerous nanite programs capable of mass destruction."
 	prereq_ids = list("nanite_harmonic", "syndicate_basic")
 	design_ids = list("explosive_nanites","pyro_nanites","meltdown_nanites","viral_nanites","nanite_sting_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500, TECHWEB_POINT_TYPE_NANITES = 2500)

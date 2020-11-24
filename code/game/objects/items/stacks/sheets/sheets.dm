@@ -22,12 +22,13 @@
 	tastes = list("minerals" = 1)
 	foodtype = MINERAL
 
-/obj/item/stack/sheet/attack(mob/M, mob/user, def_zone) //TODO: ograniczyć które rodzaje materiałów możemy jeść
+/obj/item/stack/sheet/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent != INTENT_HARM && edible && isdwarf(M))
 		var/obj/item/reagent_containers/food/snacks/material/material_as_food = new
 		material_as_food.name = name
 		if(material_as_food.attack(M, user, def_zone))
 			use(1)
+			SEND_SIGNAL(M, "dwarf_mat") //TODO: zmienić nazwę sygnału
 		qdel(material_as_food)
 	else
 		return ..()

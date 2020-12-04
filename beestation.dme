@@ -2894,6 +2894,7 @@
 #include "code\modules\research\xenobiology\crossbreeding\consuming.dm"
 #include "code\modules\research\xenobiology\crossbreeding\gentle.dm"
 #include "code\modules\research\xenobiology\crossbreeding\industrial.dm"
+#include "code\modules\research\xenobiology\crossbreeding\loyal.dm"
 #include "code\modules\research\xenobiology\crossbreeding\prismatic.dm"
 #include "code\modules\research\xenobiology\crossbreeding\recurring.dm"
 #include "code\modules\research\xenobiology\crossbreeding\regenerative.dm"

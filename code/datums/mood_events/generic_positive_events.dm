@@ -166,6 +166,14 @@
 /datum/mood_event/nanite_happiness/add_effects(message)
 	description = "<span class='nicegreen robot'>+++++++[message]+++++++</span>\n"
 
+/datum/mood_event/soothing
+	description = "<span class='nicegreen'>Having this soothing item in my possession makes me feel at peace.</span>\n"
+	mood_change = 6
+	timeout = 3 SECONDS
+
+/datum/mood_event/soothing/add_effects(obj/item/soother)
+	description = "<span class='nicegreen'>Having [soother] in my possession makes me feel at peace.</span>\n"
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0

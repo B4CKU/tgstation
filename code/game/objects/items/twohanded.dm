@@ -17,21 +17,43 @@
 //It also tidies stuff up elsewhere.
 
 
+/obj/item/twohanded
+
+/obj/item/twohanded/Initialize()
+	. = ..()
+	AddComponent(/datum/component/twohanded, 70, 100)
 
 
 /*
  * Twohanded
  */
-/obj/item/twohanded
+ 
+/datum/component/twohanded
 	var/wielded = 0
 	var/force_unwielded = 0
 	var/force_wielded = 0
-	var/block_power_wielded = 0
 	var/block_power_unwielded = 0
+	var/block_power_wielded = 0
 	var/wieldsound = null
 	var/unwieldsound = null
 
-/obj/item/twohanded/proc/unwield(mob/living/carbon/user, show_message = TRUE)
+/datum/component/twohanded/Initialize(_force_unwielded, _force_wielded, _block_power_unwielded, _block_power_wielded, _wieldsound, _unwieldsound)
+	if(_force_unwielded)
+		force_unwielded = _force_unwielded
+	if(_force_wielded)
+		force_wielded = _force_wielded
+	if(_block_power_unwielded)
+		block_power_unwielded = _block_power_unwielded
+	if(_block_power_wielded)
+		block_power_wielded = _block_power_wielded
+	if(_wieldsound)
+		wieldsound = _wieldsound
+	if(_unwieldsound)
+		unwieldsound = _unwieldsound
+	if(isitem(parent))
+		RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/onItemAttack)
+
+/datum/component/twohanded/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	if(!wielded || !user)
 		return
 	wielded = 0
@@ -64,7 +86,7 @@
 		O.unwield()
 	return
 
-/obj/item/twohanded/proc/wield(mob/living/carbon/user)
+/datum/component/twohanded/proc/wield(mob/living/carbon/user)
 	if(wielded)
 		return
 	if(ismonkey(user))
@@ -96,31 +118,31 @@
 	user.put_in_inactive_hand(O)
 	return
 
-/obj/item/twohanded/dropped(mob/user)
+/datum/component/twohanded/proc/dropped(mob/user)
 	. = ..()
 	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
 	if(!wielded)
 		return
 	unwield(user)
 
-/obj/item/twohanded/update_icon()
+/datum/component/twohanded/update_icon()
 	return
 
-/obj/item/twohanded/attack_self(mob/user)
+/datum/component/twohanded/attack_self(mob/user)
 	. = ..()
 	if(wielded) //Trying to unwield it
 		unwield(user)
 	else //Trying to wield it
 		wield(user)
 
-/obj/item/twohanded/equip_to_best_slot(mob/M)
+/datum/component/twohanded/equip_to_best_slot(mob/M)
 	if(..())
 		if(istype(src, /obj/item/twohanded/required))
 			return // unwield forces twohanded-required items to be dropped.
 		unwield(M)
 		return
 
-/obj/item/twohanded/equipped(mob/user, slot)
+/datum/component/twohanded/equipped(mob/user, slot)
 	..()
 	if(!user.is_holding(src) && wielded && !istype(src, /obj/item/twohanded/required))
 		unwield(user)

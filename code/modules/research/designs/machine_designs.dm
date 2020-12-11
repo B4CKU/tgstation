@@ -499,11 +499,11 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/bluespace_miner
-	name = "Machine Design (Bluespace Miner)"
-	desc = "The circuit board for a Bluespace Miner."
-	id = "bluespace_miner"
-	build_path = /obj/item/circuitboard/machine/bluespace_miner
+/datum/design/board/mining_drill
+	name = "Machine Design (Heavy-duty Mining Rig)"
+	desc = "The circuit board for a Mining Drill."
+	id = "mining_drill"
+	build_path = /obj/item/circuitboard/machine/drill
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 

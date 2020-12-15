@@ -9,6 +9,7 @@
 	held_items = list(null, null)
 	dextrous = TRUE
 	dextrous_hud_type = /datum/hud/dextrous/chicken
+	
 	var/obj/item/back
 	var/obj/item/head
 	var/list/chicken_overlays[CHICKEN_TOTAL_LAYERS]
@@ -24,6 +25,10 @@
 	//Cosmetic hat - provides no function other than looks
 	if(head && !(head.item_flags & ABSTRACT))
 		. += "It's wearing [head.get_examine_string(user)] on its head."
+
+	//Back
+	if(back && !(back.item_flags & ABSTRACT))
+		. += "It's wearing [back.get_examine_string(user)] on its back."
 
 	//Braindead
 	if(!client && stat != DEAD)

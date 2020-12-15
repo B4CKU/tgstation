@@ -291,8 +291,6 @@
 	icon_state = "[icon_prefix]_[body_color]"
 	icon_living = "[icon_prefix]_[body_color]"
 	icon_dead = "[icon_prefix]_[body_color]_dead"
-	pixel_x = rand(-6, 6)
-	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
 
 /mob/living/simple_animal/chicken/death(gibbed)

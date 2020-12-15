@@ -29,7 +29,7 @@
 		if(SLOT_BACK)
 			if(back)
 				return 0
-			if(!(I.slot_flags & ITEM_SLOT_BACKPACK))
+			if(!(I.slot_flags & ITEM_SLOT_BACK))
 				return 0
 			return 1
 	..()

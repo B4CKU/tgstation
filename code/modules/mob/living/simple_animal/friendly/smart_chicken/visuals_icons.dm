@@ -5,7 +5,8 @@
 //Chicken visuals
 
 
-#define CHICKEN_ITEM_SHIFT_Y -3
+#define CHICKEN_ITEM_SHIFT_Y -6
+#define CHICKEN_ITEM_SHIFT_X -6
 
 /mob/living/simple_animal/chicken/smart/proc/apply_overlay(cache_index)
 	if((. = chicken_overlays[cache_index]))
@@ -87,7 +88,7 @@
 		/*if(istype(head, /obj/item/clothing/mask)) YEEET
 			used_head_icon = 'icons/mob/mask.dmi'*/
 		var/mutable_appearance/head_overlay = head.build_worn_icon(state = head.icon_state, default_layer = CHICKEN_HEAD_LAYER, default_icon_file = used_head_icon)
-		head_overlay.pixel_y -= 15
+		head_overlay.pixel_y -= 14
 
 		chicken_overlays[CHICKEN_HEAD_LAYER] = head_overlay
 
@@ -99,3 +100,6 @@
 	update_inv_hands()
 	update_inv_head()
 	update_inv_back_chicken()
+
+#undef CHICKEN_ITEM_SHIFT_Y
+#undef CHICKEN_ITEM_SHIFT_X
